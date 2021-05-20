@@ -6,8 +6,7 @@ sys.path.append('../../common')
 import handle_data
 
 # 数据示例
-# 2 1,2;1.5,1.8;5,8;8,8;1,0.6;9,11 9,11
-# 分组个数 训练数据 测试数据
+# py k-means.py 2 1,2;1.5,1.8;5,8;8,8;1,0.6;9,11 9,11
 
 # 要分类的数据点
 data = handle_data.split_date(sys.argv[2])
@@ -23,7 +22,7 @@ centers = clf.cluster_centers_
 labels = clf.labels_
 print('中心点',centers)
 print('所属分组',labels)
-
+clf.
 
 # 预测
 predict = handle_data.split_date(sys.argv[3])

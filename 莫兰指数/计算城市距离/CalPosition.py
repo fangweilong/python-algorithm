@@ -4,8 +4,8 @@ import urllib.parse
 import hashlib
 import requests
 
-ak = "n80sB3TqG2CPCSDVdLHD1v2xXywTqayE"#百度地图ak码
-sk = "GXG9uCoq9NNFGVv2pfgaOByx4dOqU9ls"#百度地图sk码
+ak = ""#百度地图ak码
+sk = ""#百度地图sk码
 
 def getCoordinate(address):
     '''
