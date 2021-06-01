@@ -2,7 +2,7 @@ import numpy as np
 from sklearn.cluster import KMeans
 import sys
 # 导入utils工具
-sys.path.append('../../common')
+sys.path.append(sys.path[0]+'../../../common')
 import handle_data
 
 # 数据示例
@@ -22,7 +22,6 @@ centers = clf.cluster_centers_
 labels = clf.labels_
 print('中心点',centers)
 print('所属分组',labels)
-clf.
 
 # 预测
 predict = handle_data.split_date(sys.argv[3])

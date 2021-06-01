@@ -2,7 +2,7 @@ import numpy as np
 from sklearn.cluster import DBSCAN
 import sys
 # 导入utils工具
-sys.path.append('../../common')
+sys.path.append(sys.path[0]+'../../../common')
 import handle_data
 
 
