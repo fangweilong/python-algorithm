@@ -1,21 +1,28 @@
 # -*- coding: utf-8 -*-
-import matplotlib.pyplot as plt
 import numpy as np
-import os
 
 def moranI(W,X):
 
     '''
     W:空间权重矩阵
     X:观测值矩阵
-    归一化空间权重矩阵后进行moran检验，实例https://bbs.pinggu.org/thread-3568074-1-1.html
+    归一化空间权重矩阵后进行moran检验
     '''
     W = np.array(W)
     X = np.array(X)
     X = X.reshape(1,-1)
-    W = W/W.sum(axis=1)#归一化
-    n = W.shape[0]#空间单元数
-    Z = X - X.mean()#离差阵
+    print('===========w:{}',W)
+    print('===========x:{}',X)
+    #归一化
+    print('W.sum:{}',W.sum(axis=1))
+    W = W/W.sum(axis=1)
+    print('===========W归一化：{}',W)
+    #空间单元数
+    n = W.shape[0]
+    print('===========空间单元数：{}',n)
+    #离差阵
+    Z = X - X.mean()
+    print('===========离差证：{}',Z)
     S0 = W.sum()
     S1 = 0
     for i in range(n):
@@ -59,31 +66,6 @@ def moranI(W,X):
         ZIi_ = (Ii[i]-EIi)/(VARIi**0.5)
         ZIi.append(round(ZIi_,3))
     ZIi = np.array(ZIi)
-    #moran散点图
-    #用来正常显示中文标签
-    plt.rcParams['font.sans-serif']=['SimHei'] 
-    #用来正常显示负号
-    plt.rcParams['axes.unicode_minus']=False 
-    fig = plt.figure()
-    ax = fig.add_subplot(1,1,1)
-    ax.spines['top'].set_color('none')
-    ax.spines['right'].set_color('none')
-    ax.xaxis.set_ticks_position('bottom')
-    ax.spines['bottom'].set_position(('data', 0))
-    ax.yaxis.set_ticks_position('left')
-    ax.spines['left'].set_position(('data', 0))
-    WZ = np.dot(Z,W)
-    ax.scatter(Z,WZ,c='k')
-    x1 = range(int(Z.min()),int(Z.max()+1))
-    y1 = range(int(Z.min()),int(Z.max()+1))
-    ax.plot(x1,y1,'k--',label='x=y')
-    x2 = list(range(int(Z.min()),int(Z.max()+1)))
-    y2 = np.array(x2)*I[0][0]
-    ax.plot(x2,y2,'k-',label='I*x=y')
-    ax.legend(loc='upper right')
-    imgPath = os.path.join(os.getcwd(),'莫兰散点图.png')
-    ax.set_title('莫兰散点图')
-    fig.savefig(imgPath)
 
     result={}
     # 全局moran指数
@@ -96,8 +78,6 @@ def moranI(W,X):
     result["Ii"]=Ii.tolist()
     #局部检验数
     result["ZIi"]=ZIi.tolist()
-    #莫兰散点图路径
-    result["img"]=imgPath
 
     return result
 

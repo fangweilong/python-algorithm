@@ -1,12 +1,16 @@
 import numpy as np
 from sklearn.cluster import KMeans
 import sys
-# 导入utils工具
-sys.path.append(sys.path[0]+'../../../common')
-import handle_data
 
 # 数据示例
-# py k-means.py 2 1,2;1.5,1.8;5,8;8,8;1,0.6;9,11 9,11
+# 2 1,2;1.5,1.8;5,8;8,8;1,0.6;9,11 9,11
+
+#当前目录
+baseDir = os.path.dirname(os.path.abspath(__file__))
+# 导入utils工具
+sys.path.append(baseDir+'../../../common')
+import handle_data
+
 
 # 要分类的数据点
 data = handle_data.split_date(sys.argv[2])
